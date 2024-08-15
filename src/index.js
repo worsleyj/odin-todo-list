@@ -1,10 +1,8 @@
 import "./reset.css";
 import "./styles.css";
 
-console.log("Test");
-
-function createTodoItem(title, desc, dueDate, priority, notes, checked) {
-    return {title, desc, dueDate, priority, notes, checked}
+function createTodoItem(title, desc, dueDate, priority, tags, checked) {
+    return {title, desc, dueDate, priority, tags, checked};
 }
 
 const testItem = createTodoItem("Title", "Description", "8/15/24", "Low", "", false);
@@ -18,8 +16,10 @@ function createProject(title) {
 }
 
 const defaultProject = createProject("Default Project");
-// ~~~ dom stuff here, move to dif module on completion ~~~
+defaultProject.items.push(testItem);
+defaultProject.items.push(testItemTwo);
 
+// ~~~ dom stuff here, move to dif module on completion ~~~
 const projectList = document.querySelector(".project-list");
 
 function displayProject(title, projectArray) {
@@ -41,9 +41,5 @@ function displayProject(title, projectArray) {
         project.append(itemLine);
     });
 }
-
-const projectArray = [];
-defaultProject.items.push(testItem);
-defaultProject.items.push(testItemTwo);
 
 displayProject(defaultProject.title, defaultProject.items);
