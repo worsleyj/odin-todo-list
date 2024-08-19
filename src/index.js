@@ -25,9 +25,9 @@ defaultProject.items.push(testItemThree);
 
 const defaultProject2 = createProject("Default Project2");
 projects.push(defaultProject2);
-defaultProject.items.push(testItem);
-defaultProject.items.push(testItemTwo);
-defaultProject.items.push(testItemThree);
+defaultProject2.items.push(testItem);
+defaultProject2.items.push(testItemTwo);
+defaultProject2.items.push(testItemThree);
 
 
 // ~~~ dom stuff here, move to dif module on completion ~~~
