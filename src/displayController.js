@@ -29,14 +29,13 @@ function displayProject(title, projectArray) {
     projectTitle.textContent = title;
     project.append(projectTitle);
         projectArray.forEach((toDoItem, index) => {
-            console.log(index);
-            
             const itemLine = document.createElement("li");
             itemLine.addEventListener("click", () => {
                 displaySelectedItem(toDoItem);
             })
             itemLine.className = "to-do-item";
             itemLine.setAttribute("data-index", index);
+            index++;
             const itemTitle = document.createElement("h2");
             const itemDueDate = document.createElement("div");
             const deleteBtn = document.createElement("button");
@@ -44,7 +43,6 @@ function displayProject(title, projectArray) {
             itemDueDate.textContent = toDoItem.dueDate;
             deleteBtn.textContent = "X";
             deleteBtn.className = "delete-btn";
-            index++;
             deleteBtn.addEventListener("click", () => {
                 const deleteIndex = deleteBtn.parentElement.getAttribute("data-index");
                 projectList.textContent = "";
@@ -55,12 +53,7 @@ function displayProject(title, projectArray) {
             itemLine.append(itemTitle, itemDueDate, deleteBtn);
             project.append(itemLine);
         });
-    // displayProjectItems(project, projectArray);
 }
-
-// function displayProjectItems(project, projectArray) {
-//     
-// }
 
 function displaySelectedItem(selectedItem) {
     selection.textContent = "";
