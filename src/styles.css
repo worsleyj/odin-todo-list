@@ -7,3 +7,19 @@ li:hover {
     background-color: slateblue;
     opacity: .8;
 }
+
+body {
+    display: grid;
+    grid-template: 1fr / 1fr 3fr;
+}
+
+.project-list {
+    grid-area: 1 / 1 / 3 / 2;
+    width: 100%;
+    background-color: slategray;
+}
+
+.selected-item {
+    grid-area: 1 / 2 / 3 / 3;
+    padding: 24px;
+}

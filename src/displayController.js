@@ -17,6 +17,7 @@ function displayProject(title, projectArray) {
             itemLine.addEventListener("click", () => {
                 displaySelectedItem(toDoItem);
             })
+            itemLine.className = "to-do-item";
             const itemTitle = document.createElement("h2");
             const itemDueDate = document.createElement("div");
             const deleteBtn = document.createElement("button");
