@@ -1,6 +1,6 @@
 import "./reset.css";
 import "./styles.css";
-import { displayProject, displaySelectedItem } from "./displayController";
+import { displayProjects, displaySelectedItem } from "./displayController";
 
 function createTodoItem(title, desc, dueDate, priority, tags, complete) {
     return {title, desc, dueDate, priority, tags, complete};
@@ -16,14 +16,23 @@ function createProject(title) {
     const items = [];
     return {title, createdDate, items};
 }
-
+const projects = [];
 const defaultProject = createProject("Default Project");
+projects.push(defaultProject);
+defaultProject.items.push(testItem);
+defaultProject.items.push(testItemTwo);
+defaultProject.items.push(testItemThree);
+
+const defaultProject2 = createProject("Default Project2");
+projects.push(defaultProject2);
 defaultProject.items.push(testItem);
 defaultProject.items.push(testItemTwo);
 defaultProject.items.push(testItemThree);
 
 
 // ~~~ dom stuff here, move to dif module on completion ~~~
-displayProject(defaultProject.title, defaultProject.items);
+displayProjects(projects);
 
 displaySelectedItem(defaultProject.items[0]); // default displayed note
+
+export {projects};

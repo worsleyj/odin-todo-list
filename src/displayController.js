@@ -1,5 +1,12 @@
+import { projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
+
+function displayProjects(projects) {
+    projects.forEach(project => {
+        displayProject(project.title, project.items);
+    })
+}
 
 function displayProject(title, projectArray) {
     const project = document.createElement("ul");
@@ -62,4 +69,4 @@ function displaySelectedItem(selectedItem) {
     itemContainer.append(itemTitle, itemDesc, itemDueDate, itemPriority);
 }
 
-export {displayProject, displaySelectedItem};
+export {displayProjects, displaySelectedItem};
