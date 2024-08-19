@@ -1,4 +1,4 @@
-import { projects } from ".";
+import { createProject, projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
 
@@ -6,6 +6,18 @@ function displayProjects(projects) {
     projects.forEach(project => {
         displayProject(project.title, project.items);
     })
+    const newProjectBtn = document.createElement("button");
+    newProjectBtn.className = "new-project-button";
+    newProjectBtn.textContent = "New Project";
+    newProjectBtn.addEventListener("click", () => {
+        const newProject = createProject("New Project"); // hard coded, needs modal input, need rename functionality
+        projects.push(newProject);
+        projectList.textContent = "";
+        displayProjects(projects);
+    })
+    console.log(projects);
+    
+    projectList.append(newProjectBtn);
 }
 
 function displayProject(title, projectArray) {
