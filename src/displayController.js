@@ -19,10 +19,11 @@ const submitNewNoteBtn = document.querySelector(".submit-new-note");
         const newNoteDesc = document.getElementById("new-desc");
         const newNoteDate = document.getElementById("new-date");
         const newNotePrio = document.getElementById("new-priority");
-        const projectIndex = document.getElementById("project-index")+1;
+        const projectIndex = document.querySelector("#project-index");
         const newNote = createNoteItem(newNoteTitle.value, newNoteDesc.value, newNoteDate.value, newNotePrio.value, false);
-        projects[projectIndex.value].items.push(newNote);
-        console.log(projects[projectIndex.value]);
+        projects[projectIndex.value-1].items.push(newNote);
+        projectList.textContent = "";
+        displayProjects(projects);
     })
 
 function displayProjects(projects) {
