@@ -63,6 +63,7 @@ function displayProject(title, projectArray) {
             project.append(itemLine);
         });
         const newTodoBtn = document.createElement("button");
+        newTodoBtn.style.visibility = "hidden";
         newTodoBtn.className = "new-note-button";
         newTodoBtn.textContent = "New Note";
         project.append(newTodoBtn);
