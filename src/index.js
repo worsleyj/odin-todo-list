@@ -32,10 +32,7 @@ defaultProject2.items.push(testItem);
 defaultProject2.items.push(testItemTwo);
 defaultProject2.items.push(testItemThree);
 
-
-// ~~~ dom stuff here, move to dif module on completion ~~~
 displayProjects(projects);
-
 displaySelectedItem(defaultProject.items[0]); // default displayed note
 
 export {createNoteItem, createProject, projects};
