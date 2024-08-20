@@ -1,6 +1,7 @@
 import "./reset.css";
 import "./styles.css";
-import { displayProjects, displaySelectedItem } from "./displayController";
+import { displayProjects } from "./sidebar";
+import { displaySelectedItem } from "./displaySelection";
 
 function createNoteItem(title, desc, dueDate, priority, complete) {
     return {title, desc, dueDate, priority, complete};

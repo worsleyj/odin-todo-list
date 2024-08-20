@@ -1,9 +1,9 @@
 import { createNoteItem, createProject, projects } from ".";
+import { displaySelectedItem } from "./displaySelection";
+
 const projectList = document.querySelector(".project-list");
-const selection = document.querySelector(".selected-item");
 const projectModal = document.querySelector(".new-project");
 const noteModal = document.querySelector(".new-note");
-const editModal = document.querySelector(".edit-note");
 
 function resetDisplay() {
     projectList.textContent = "";
@@ -106,68 +106,4 @@ function displayNotes(project, projectArray) {
     });
 }
 
-function checkComplete(selectedItem, completeStatus) {
-    if(selectedItem.isComplete) {
-        completeStatus.textContent = "✅";
-    } else completeStatus.textContent = "❌";
-}
-
-function editButton(selectedItem) {
-    const editTitle = document.querySelector("#edit-title");
-    const editDesc = document.querySelector("#edit-desc");
-    const editDate = document.querySelector("#edit-date");
-    const editPriority = document.querySelector("#edit-priority");
-
-    editTitle.value = selectedItem.title;
-    editDesc.value = selectedItem.desc;
-    editDate.value = selectedItem.dueDate;
-    editPriority.value = selectedItem.priority;
-
-    const submitEditBtn = document.querySelector(".submit-edit");
-    submitEditBtn.addEventListener("click", () => {
-        selectedItem.title = editTitle.value;
-        selectedItem.desc = editDesc.value;
-        selectedItem.dueDate = editDate.value;
-        selectedItem.priority = editPriority.value;
-        resetDisplay();
-        displaySelectedItem(selectedItem);
-    })
-    editModal.showModal();
-}
-
-function displaySelectedItem(selectedItem) {
-    selection.textContent = "";
-    const itemContainer = document.createElement("div");
-    const itemTitle = document.createElement("h1");
-    const itemDesc = document.createElement("p");
-    const itemDueDate = document.createElement("div");
-    const itemPriority = document.createElement("div");
-    const completeStatus = document.createElement("div");
-    const toggleComplete = document.createElement("button");
-    const editBtn = document.createElement("button");
-
-    itemTitle.textContent = selectedItem.title;
-    itemDesc.textContent = selectedItem.desc;
-    itemDueDate.textContent = selectedItem.dueDate;
-    itemPriority.textContent = selectedItem.priority;
-
-    editBtn.textContent = "Edit Note";
-    editBtn.addEventListener("click", () => editButton(selectedItem));
-
-    checkComplete(selectedItem, completeStatus);
-    toggleComplete.textContent = "Mark as Completed";
-    toggleComplete.addEventListener("click", () => {
-        if (selectedItem.isComplete) {
-            selectedItem.isComplete = false;
-        } else {
-            selectedItem.isComplete = true;
-        }
-        checkComplete(selectedItem, completeStatus);
-    })
-
-
-    selection.append(itemContainer);
-    itemContainer.append(itemTitle, itemDesc, itemDueDate, itemPriority, editBtn, completeStatus, toggleComplete);
-}
-
-export {displayProjects, displaySelectedItem};
+export {displayProjects, resetDisplay};
