@@ -4,13 +4,17 @@ const selection = document.querySelector(".selected-item");
 const projectModal = document.querySelector(".new-project");
 const noteModal = document.querySelector(".new-note");
 
+function resetDisplay() {
+    projectList.textContent = "";
+    displayProjects(projects);
+}
+
 const submitNewProjectBtn = document.querySelector(".submit-new-project");
     submitNewProjectBtn.addEventListener("click", () => {
         const newProjectTitle = document.getElementById("new-project-title");
         const newProject = createProject(newProjectTitle.value);
         projects.push(newProject);
-        projectList.textContent = "";
-        displayProjects(projects);
+        resetDisplay();
     })
 
 const submitNewNoteBtn = document.querySelector(".submit-new-note");
@@ -22,8 +26,7 @@ const submitNewNoteBtn = document.querySelector(".submit-new-note");
         const projectIndex = document.querySelector("#project-index");
         const newNote = createNoteItem(newNoteTitle.value, newNoteDesc.value, newNoteDate.value, newNotePrio.value, false);
         projects[projectIndex.value-1].items.push(newNote);
-        projectList.textContent = "";
-        displayProjects(projects);
+        resetDisplay();
     })
 
 function displayProjects(projects) {
@@ -62,8 +65,7 @@ function displayProject(projectObj, projectArray, index) {
     deleteProjectBtn.textContent = "Delete Project";
     deleteProjectBtn.addEventListener("click", () => {
         projects.splice(index, 1);
-        projectList.textContent = "";
-        displayProjects(projects);
+        resetDisplay();
     })
     projectTitle.textContent = projectObj.title;
     project.append(projectTitle, deleteProjectBtn);
@@ -89,9 +91,8 @@ function displayNotes(project, projectArray) {
         deleteNoteBtn.className = "delete-btn";
         deleteNoteBtn.addEventListener("click", () => {
             const deleteIndex = deleteNoteBtn.parentElement.getAttribute("data-index");
-            projectList.textContent = "";
             projectArray.splice(deleteIndex, 1);
-            displayProjects(projects);
+            resetDisplay();
         });
         itemLine.append(itemTitle, itemDueDate, deleteNoteBtn);
         project.append(itemLine);
