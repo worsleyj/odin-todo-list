@@ -1,5 +1,5 @@
 import { createNoteItem, createProject, projects } from ".";
-import { displaySelectedItem } from "./displaySelection";
+import { displaySelectedItem } from "./mainDisplay";
 
 const projectList = document.querySelector(".project-list");
 const projectModal = document.querySelector(".new-project");
