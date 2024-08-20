@@ -14,8 +14,10 @@ const submitNewProjectBtn = document.querySelector(".submit-new-project");
     })
 
 function displayProjects(projects) {
+    let index = -1;
     projects.forEach(project => {
-        displayProject(project.title, project.items);
+        index++;
+        displayProject(project.title, project.items, index);
     });
     const newProjectBtn = document.createElement("button");
     newProjectBtn.className = "new-project-button";
@@ -27,15 +29,22 @@ function displayProjects(projects) {
     projectList.append(newProjectBtn);
 }
 
-function displayProject(title, projectArray) {
+function displayProject(title, projectArray, index) {
     const project = document.createElement("ul");
     project.className = "project";
     projectList.append(project);
 
     const projectTitle = document.createElement("h1");
+    const deleteProjectBtn = document.createElement("button");
+    deleteProjectBtn.textContent = "Delete Project";
+    deleteProjectBtn.addEventListener("click", () => {
+        projects.splice(index, 1);
+        projectList.textContent = "";
+        displayProjects(projects);
+    })
     projectTitle.textContent = title;
-    project.append(projectTitle);
-    
+    project.append(projectTitle, deleteProjectBtn);
+
     displayNotes(project, projectArray);
     createNewNoteButton(project);
 }
@@ -51,19 +60,19 @@ function displayNotes(project, projectArray) {
         index++;
         const itemTitle = document.createElement("h2");
         const itemDueDate = document.createElement("div");
-        const deleteBtn = document.createElement("button");
+        const deleteNoteBtn = document.createElement("button");
         itemTitle.textContent = noteItem.title;
         itemDueDate.textContent = noteItem.dueDate;
-        deleteBtn.textContent = "X";
-        deleteBtn.className = "delete-btn";
-        deleteBtn.addEventListener("click", () => {
-            const deleteIndex = deleteBtn.parentElement.getAttribute("data-index");
+        deleteNoteBtn.textContent = "X";
+        deleteNoteBtn.className = "delete-btn";
+        deleteNoteBtn.addEventListener("click", () => {
+            const deleteIndex = deleteNoteBtn.parentElement.getAttribute("data-index");
             projectList.textContent = "";
             projectArray.splice(deleteIndex, 1);
             displayProjects(projects);
-    });
-       itemLine.append(itemTitle, itemDueDate, deleteBtn);
-       project.append(itemLine);
+        });
+        itemLine.append(itemTitle, itemDueDate, deleteNoteBtn);
+        project.append(itemLine);
     });
 }
 
