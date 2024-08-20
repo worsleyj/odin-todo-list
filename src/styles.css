@@ -32,3 +32,12 @@ body {
     padding: 24px;
 }
 
+.modal {
+    margin: auto;
+}
+
+.modal::backdrop {
+    /* background: linear-gradient(180deg, black, rgb(252, 220, 161)); */
+    background-color: black;
+    opacity: .4;
+}

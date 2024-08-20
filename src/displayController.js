@@ -1,6 +1,17 @@
 import { createProject, projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
+const projectModal = document.querySelector(".new-project");
+// const projectModal = document.querySelector(".new-project");
+
+const submitNewProjectBtn = document.querySelector(".submit-new-project");
+    submitNewProjectBtn.addEventListener("click", () => {
+        const newProjectTitle = document.getElementById("new-title");
+        const newProject = createProject(newProjectTitle.value);
+        projects.push(newProject);
+        projectList.textContent = "";
+        displayProjects(projects);
+    })
 
 function displayProjects(projects) {
     projects.forEach(project => {
@@ -9,11 +20,9 @@ function displayProjects(projects) {
     const newProjectBtn = document.createElement("button");
     newProjectBtn.className = "new-project-button";
     newProjectBtn.textContent = "New Project";
+
     newProjectBtn.addEventListener("click", () => {
-        const newProject = createProject("New Project"); // hard coded, needs modal input, need rename functionality
-        projects.push(newProject);
-        projectList.textContent = "";
-        displayProjects(projects);
+        projectModal.showModal();
     })
     console.log(projects);
     

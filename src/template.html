@@ -8,5 +8,16 @@
 <body>
     <div class="project-list"></div>
     <div class="selected-item"></div>
+    <dialog class="new-project modal">
+        <form id="new-project-form" method="dialog">
+            <h1>Start a New Project</h1>
+            <label for="title">Title</label>
+            <input id="new-title" type="text" value="New Project">
+            <div class="new-project-buttons">
+                <button class="close-modal">Close</button>
+                <button class="submit-new-project">Add</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
