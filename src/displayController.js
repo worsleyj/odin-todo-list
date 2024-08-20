@@ -2,7 +2,7 @@ import { createProject, projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
 const projectModal = document.querySelector(".new-project");
-// const projectModal = document.querySelector(".new-project");
+// const toDoItemModal = document.querySelector(".new-to-do-item");
 
 const submitNewProjectBtn = document.querySelector(".submit-new-project");
     submitNewProjectBtn.addEventListener("click", () => {
@@ -62,6 +62,16 @@ function displayProject(title, projectArray) {
             itemLine.append(itemTitle, itemDueDate, deleteBtn);
             project.append(itemLine);
         });
+        const newTodoBtn = document.createElement("button");
+        newTodoBtn.className = "new-to-do-button";
+        newTodoBtn.textContent = "New Note";
+        project.append(newTodoBtn);
+        project.addEventListener("mouseover", () => {
+            newTodoBtn.style.visibility = "visible";
+        })
+        project.addEventListener("mouseout", () => {
+            newTodoBtn.style.visibility = "hidden";
+        })
 }
 
 function displaySelectedItem(selectedItem) {

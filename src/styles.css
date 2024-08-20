@@ -41,3 +41,7 @@ body {
     background-color: black;
     opacity: .4;
 }
+
+.new-to-do-button {
+    visibility: hidden;
+}
