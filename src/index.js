@@ -37,4 +37,4 @@ displayProjects(projects);
 
 displaySelectedItem(defaultProject.items[0]); // default displayed note
 
-export {createProject, projects};
+export {createNoteItem, createProject, projects};

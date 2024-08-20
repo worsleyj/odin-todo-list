@@ -21,10 +21,14 @@ body {
     background-color: slategray;
 }
 
-.new-project-button {
+.new-project-button, .new-note-button {
     background-color: aqua;
     padding: 12px;
-    margin: 24px;
+    margin: 8px 24px;
+}
+
+.new-note-button {
+    background-color: greenyellow;
 }
 
 .selected-item {

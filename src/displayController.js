@@ -1,24 +1,45 @@
-import { createProject, projects } from ".";
+import { createNoteItem, createProject, projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
 const projectModal = document.querySelector(".new-project");
-// const noteItemModal = document.querySelector(".new-note-item");
+const noteModal = document.querySelector(".new-note");
 
 const submitNewProjectBtn = document.querySelector(".submit-new-project");
     submitNewProjectBtn.addEventListener("click", () => {
-        const newProjectTitle = document.getElementById("new-title");
+        const newProjectTitle = document.getElementById("new-project-title");
         const newProject = createProject(newProjectTitle.value);
         projects.push(newProject);
         projectList.textContent = "";
         displayProjects(projects);
     })
 
+const submitNewNoteBtn = document.querySelector(".submit-new-note");
+    submitNewNoteBtn.addEventListener("click", () => {
+        const newNoteTitle = document.getElementById("new-note-title");
+        const newNoteDesc = document.getElementById("new-desc");
+        const newNoteDate = document.getElementById("new-date");
+        const newNotePrio = document.getElementById("new-priority");
+        const projectIndex = document.getElementById("project-index")+1;
+        const newNote = createNoteItem(newNoteTitle.value, newNoteDesc.value, newNoteDate.value, newNotePrio.value, false);
+        projects[projectIndex.value].items.push(newNote);
+        console.log(projects[projectIndex.value]);
+    })
+
 function displayProjects(projects) {
+    const projectIndex = document.querySelector("#project-index");
+    projectIndex.setAttribute("max", projects.length)
     let index = -1;
     projects.forEach(project => {
         index++;
-        displayProject(project.title, project.items, index);
+        displayProject(project, project.items, index);
     });
+    const newNoteBtn = document.createElement("button");
+    newNoteBtn.className = "new-note-button";
+    newNoteBtn.textContent = "New Note";
+
+    newNoteBtn.addEventListener("click", () => {
+        noteModal.showModal();
+    })
     const newProjectBtn = document.createElement("button");
     newProjectBtn.className = "new-project-button";
     newProjectBtn.textContent = "New Project";
@@ -26,12 +47,13 @@ function displayProjects(projects) {
     newProjectBtn.addEventListener("click", () => {
         projectModal.showModal();
     })
-    projectList.append(newProjectBtn);
+    projectList.append(newNoteBtn, newProjectBtn);
 }
 
-function displayProject(title, projectArray, index) {
+function displayProject(projectObj, projectArray, index) {
     const project = document.createElement("ul");
     project.className = "project";
+    project.setAttribute("data-index", index);
     projectList.append(project);
 
     const projectTitle = document.createElement("h1");
@@ -42,11 +64,10 @@ function displayProject(title, projectArray, index) {
         projectList.textContent = "";
         displayProjects(projects);
     })
-    projectTitle.textContent = title;
+    projectTitle.textContent = projectObj.title;
     project.append(projectTitle, deleteProjectBtn);
 
     displayNotes(project, projectArray);
-    createNewNoteButton(project);
 }
 
 function displayNotes(project, projectArray) {
@@ -74,22 +95,6 @@ function displayNotes(project, projectArray) {
         itemLine.append(itemTitle, itemDueDate, deleteNoteBtn);
         project.append(itemLine);
     });
-}
-
-function createNewNoteButton(project) {
-    const newTodoBtn = document.createElement("button");
-    newTodoBtn.style.visibility = "hidden";
-    newTodoBtn.className = "new-note-button";
-    newTodoBtn.textContent = "New Note";
-    project.append(newTodoBtn);
-    
-
-    project.addEventListener("mouseover", () => {
-        newTodoBtn.style.visibility = "visible";
-    })
-    project.addEventListener("mouseout", () => {
-        newTodoBtn.style.visibility = "hidden";
-    })
 }
 
 function displaySelectedItem(selectedItem) {
