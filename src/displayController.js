@@ -84,6 +84,7 @@ function displayNotes(project, projectArray) {
         index++;
         const itemTitle = document.createElement("h2");
         const itemDueDate = document.createElement("div");
+        const isComplete = document.createElement("div");
         const deleteNoteBtn = document.createElement("button");
         itemTitle.textContent = noteItem.title;
         itemDueDate.textContent = noteItem.dueDate;
@@ -94,9 +95,20 @@ function displayNotes(project, projectArray) {
             projectArray.splice(deleteIndex, 1);
             resetDisplay();
         });
-        itemLine.append(itemTitle, itemDueDate, deleteNoteBtn);
+        if(noteItem.complete) {
+            isComplete.textContent = "✅";
+        }
+
+
+        itemLine.append(itemTitle, itemDueDate, isComplete, deleteNoteBtn);
         project.append(itemLine);
     });
+}
+
+function checkComplete(selectedItem, completeStatus) {
+    if(selectedItem.isComplete) {
+        completeStatus.textContent = "✅";
+    } else completeStatus.textContent = "❌";
 }
 
 function displaySelectedItem(selectedItem) {
@@ -106,14 +118,28 @@ function displaySelectedItem(selectedItem) {
     const itemDesc = document.createElement("p");
     const itemDueDate = document.createElement("div");
     const itemPriority = document.createElement("div");
+    const completeStatus = document.createElement("div");
+    const toggleComplete = document.createElement("button");
 
     itemTitle.textContent = selectedItem.title;
     itemDesc.textContent = selectedItem.desc;
     itemDueDate.textContent = selectedItem.dueDate;
     itemPriority.textContent = selectedItem.priority;
 
+    checkComplete(selectedItem, completeStatus);
+    toggleComplete.textContent = "Mark as Completed";
+    toggleComplete.addEventListener("click", () => {
+        if (selectedItem.isComplete) {
+            selectedItem.isComplete = false;
+        } else {
+            selectedItem.isComplete = true;
+        }
+        checkComplete(selectedItem, completeStatus);
+    })
+
+
     selection.append(itemContainer);
-    itemContainer.append(itemTitle, itemDesc, itemDueDate, itemPriority);
+    itemContainer.append(itemTitle, itemDesc, itemDueDate, itemPriority, completeStatus, toggleComplete);
 }
 
 export {displayProjects, displaySelectedItem};
