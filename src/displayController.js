@@ -16,7 +16,7 @@ const submitNewProjectBtn = document.querySelector(".submit-new-project");
 function displayProjects(projects) {
     projects.forEach(project => {
         displayProject(project.title, project.items);
-    })
+    });
     const newProjectBtn = document.createElement("button");
     newProjectBtn.className = "new-project-button";
     newProjectBtn.textContent = "New Project";
@@ -24,8 +24,6 @@ function displayProjects(projects) {
     newProjectBtn.addEventListener("click", () => {
         projectModal.showModal();
     })
-    console.log(projects);
-    
     projectList.append(newProjectBtn);
 }
 
@@ -37,42 +35,52 @@ function displayProject(title, projectArray) {
     const projectTitle = document.createElement("h1");
     projectTitle.textContent = title;
     project.append(projectTitle);
-        projectArray.forEach((noteItem, index) => {
-            const itemLine = document.createElement("li");
-            itemLine.addEventListener("click", () => {
-                displaySelectedItem(noteItem);
-            })
-            itemLine.className = "note-item";
-            itemLine.setAttribute("data-index", index);
-            index++;
-            const itemTitle = document.createElement("h2");
-            const itemDueDate = document.createElement("div");
-            const deleteBtn = document.createElement("button");
-            itemTitle.textContent = noteItem.title;
-            itemDueDate.textContent = noteItem.dueDate;
-            deleteBtn.textContent = "X";
-            deleteBtn.className = "delete-btn";
-            deleteBtn.addEventListener("click", () => {
-                const deleteIndex = deleteBtn.parentElement.getAttribute("data-index");
-                projectList.textContent = "";
-                projectArray.splice(deleteIndex, 1);
-                displayProjects(projects);
-            });
     
-            itemLine.append(itemTitle, itemDueDate, deleteBtn);
-            project.append(itemLine);
-        });
-        const newTodoBtn = document.createElement("button");
+    displayNotes(project, projectArray);
+    createNewNoteButton(project);
+}
+
+function displayNotes(project, projectArray) {
+    projectArray.forEach((noteItem, index) => {
+        const itemLine = document.createElement("li");
+        itemLine.addEventListener("click", () => {
+            displaySelectedItem(noteItem);
+        })
+        itemLine.className = "note-item";
+        itemLine.setAttribute("data-index", index);
+        index++;
+        const itemTitle = document.createElement("h2");
+        const itemDueDate = document.createElement("div");
+        const deleteBtn = document.createElement("button");
+        itemTitle.textContent = noteItem.title;
+        itemDueDate.textContent = noteItem.dueDate;
+        deleteBtn.textContent = "X";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.addEventListener("click", () => {
+            const deleteIndex = deleteBtn.parentElement.getAttribute("data-index");
+            projectList.textContent = "";
+            projectArray.splice(deleteIndex, 1);
+            displayProjects(projects);
+    });
+       itemLine.append(itemTitle, itemDueDate, deleteBtn);
+       project.append(itemLine);
+    });
+}
+
+function createNewNoteButton(project) {
+    const newTodoBtn = document.createElement("button");
+    newTodoBtn.style.visibility = "hidden";
+    newTodoBtn.className = "new-note-button";
+    newTodoBtn.textContent = "New Note";
+    project.append(newTodoBtn);
+    
+
+    project.addEventListener("mouseover", () => {
+        newTodoBtn.style.visibility = "visible";
+    })
+    project.addEventListener("mouseout", () => {
         newTodoBtn.style.visibility = "hidden";
-        newTodoBtn.className = "new-note-button";
-        newTodoBtn.textContent = "New Note";
-        project.append(newTodoBtn);
-        project.addEventListener("mouseover", () => {
-            newTodoBtn.style.visibility = "visible";
-        })
-        project.addEventListener("mouseout", () => {
-            newTodoBtn.style.visibility = "hidden";
-        })
+    })
 }
 
 function displaySelectedItem(selectedItem) {
