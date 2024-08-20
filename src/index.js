@@ -2,7 +2,7 @@ import "./reset.css";
 import "./styles.css";
 import { displayProjects, displaySelectedItem } from "./displayController";
 
-function createTodoItem(title, desc, dueDate, priority, tags, complete) {
+function createNoteItem(title, desc, dueDate, priority, tags, complete) {
     return {title, desc, dueDate, priority, tags, complete};
 }
 
@@ -12,11 +12,11 @@ function createProject(title) {
     return {title, createdDate, items};
 }
 
-const testItem = createTodoItem("Note One", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste accusantium " +
+const testItem = createNoteItem("Note One", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste accusantium " +
     "inventore aspernatur. Voluptas, quibusdam cum! Repellendus corrupti tempora reiciendis vel minima temporibus maiores "+ 
     "dolorum doloribus ducimus quia? Est, cumque illum.", "8/15/24", "3", "", false);
-const testItemTwo = createTodoItem("Note about Bread", "I freaking love bread man", "9/5/24", "1", "", false);
-const testItemThree = createTodoItem("Top 10 Animals", "Number 9: Cow", "1/1/24", "2", "", false)
+const testItemTwo = createNoteItem("Note about Bread", "I freaking love bread man", "9/5/24", "1", "", false);
+const testItemThree = createNoteItem("Top 10 Animals", "Number 9: Cow", "1/1/24", "2", "", false)
 
 const projects = [];
 const defaultProject = createProject("Default Project");

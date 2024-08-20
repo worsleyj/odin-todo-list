@@ -2,7 +2,7 @@ import { createProject, projects } from ".";
 const projectList = document.querySelector(".project-list");
 const selection = document.querySelector(".selected-item");
 const projectModal = document.querySelector(".new-project");
-// const toDoItemModal = document.querySelector(".new-to-do-item");
+// const noteItemModal = document.querySelector(".new-note-item");
 
 const submitNewProjectBtn = document.querySelector(".submit-new-project");
     submitNewProjectBtn.addEventListener("click", () => {
@@ -37,19 +37,19 @@ function displayProject(title, projectArray) {
     const projectTitle = document.createElement("h1");
     projectTitle.textContent = title;
     project.append(projectTitle);
-        projectArray.forEach((toDoItem, index) => {
+        projectArray.forEach((noteItem, index) => {
             const itemLine = document.createElement("li");
             itemLine.addEventListener("click", () => {
-                displaySelectedItem(toDoItem);
+                displaySelectedItem(noteItem);
             })
-            itemLine.className = "to-do-item";
+            itemLine.className = "note-item";
             itemLine.setAttribute("data-index", index);
             index++;
             const itemTitle = document.createElement("h2");
             const itemDueDate = document.createElement("div");
             const deleteBtn = document.createElement("button");
-            itemTitle.textContent = toDoItem.title;
-            itemDueDate.textContent = toDoItem.dueDate;
+            itemTitle.textContent = noteItem.title;
+            itemDueDate.textContent = noteItem.dueDate;
             deleteBtn.textContent = "X";
             deleteBtn.className = "delete-btn";
             deleteBtn.addEventListener("click", () => {
@@ -63,7 +63,7 @@ function displayProject(title, projectArray) {
             project.append(itemLine);
         });
         const newTodoBtn = document.createElement("button");
-        newTodoBtn.className = "new-to-do-button";
+        newTodoBtn.className = "new-note-button";
         newTodoBtn.textContent = "New Note";
         project.append(newTodoBtn);
         project.addEventListener("mouseover", () => {
