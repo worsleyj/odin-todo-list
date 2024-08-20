@@ -1,6 +1,5 @@
 import { resetDisplay } from "./sidebar";
 
-const selection = document.querySelector(".selected-item");
 const today=new Date(); 
 document.getElementById('edit-date').value = today.toISOString().substr(0, 10);
 
@@ -35,22 +34,42 @@ function editButton(selectedItem) {
 }
 
 function displaySelectedItem(selectedItem) {
+    const selection = document.querySelector(".selected-item");
     selection.textContent = "";
     const itemContainer = document.createElement("div");
+    const titleBar = document.createElement("div");
     const itemTitle = document.createElement("h1");
-    const itemDesc = document.createElement("p");
-    const itemDueDate = document.createElement("div");
     const itemPriority = document.createElement("div");
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit-button";
+    titleBar.append(itemTitle, itemPriority, editBtn);
+    titleBar.className = "title-bar";
+
+    const itemDesc = document.createElement("p");
+
+    const itemDueDate = document.createElement("div");
     const completeStatus = document.createElement("div");
     const toggleComplete = document.createElement("button");
-    const editBtn = document.createElement("button");
+    const footer = document.createElement("div");
+    footer.append(itemDueDate, completeStatus, toggleComplete)
+    footer.className = "footer";
 
     itemTitle.textContent = selectedItem.title;
     itemDesc.textContent = selectedItem.desc;
+    itemDesc.className = "main-text";
     itemDueDate.textContent = selectedItem.dueDate;
-    itemPriority.textContent = selectedItem.priority;
+    itemPriority.className = "priority-level";
 
-    editBtn.textContent = "Edit Note";
+    if (selectedItem.priority == 1 ) {
+        itemPriority.textContent = "🟢";
+    } else if (selectedItem.priority == 2) {
+        itemPriority.textContent = "🟡";
+    } else if (selectedItem.priority == 3) {
+        itemPriority.textContent = "🔴";
+    } else {
+        itemPriority.textContent = "";
+    }
+    editBtn.textContent = "Edit";
     editBtn.addEventListener("click", () => editButton(selectedItem));
 
     checkComplete(selectedItem, completeStatus);
@@ -66,7 +85,7 @@ function displaySelectedItem(selectedItem) {
 
 
     selection.append(itemContainer);
-    itemContainer.append(itemTitle, itemDesc, itemDueDate, itemPriority, editBtn, completeStatus, toggleComplete);
+    itemContainer.append(titleBar, itemDesc, footer);
 }
 
 export { displaySelectedItem };
