@@ -6,6 +6,7 @@ const projectModal = document.querySelector(".new-project");
 const noteModal = document.querySelector(".new-note");
 const today=new Date(); 
 document.getElementById('new-date').value = today.toISOString().substr(0, 10);
+document.getElementById('edit-date').value = today.toISOString().substr(0, 10);
 
 function resetDisplay() {
     projectList.textContent = "";

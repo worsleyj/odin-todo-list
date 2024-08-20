@@ -15,9 +15,9 @@ function createProject(title) {
 
 const testItem = createNoteItem("Note One", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste accusantium " +
     "inventore aspernatur. Voluptas, quibusdam cum! Repellendus corrupti tempora reiciendis vel minima temporibus maiores "+ 
-    "dolorum doloribus ducimus quia? Est, cumque illum.", "8/15/24", "3", false);
-const testItemTwo = createNoteItem("Note about Bread", "I freaking love bread man", "9/5/24", "1", false);
-const testItemThree = createNoteItem("Top 10 Animals", "Number 9: Cow", "1/1/24", "2", false)
+    "dolorum doloribus ducimus quia? Est, cumque illum.", "08/20/2024", "3", false);
+const testItemTwo = createNoteItem("Note about Bread", "I freaking love bread man", "09/05/2024", "1", false);
+const testItemThree = createNoteItem("Top 10 Animals", "Number 9: Cow", "01/01/2024", "2", false)
 
 const projects = [];
 const defaultProject = createProject("Default Project");

@@ -1,6 +1,8 @@
 import { resetDisplay } from "./sidebar";
 
 const selection = document.querySelector(".selected-item");
+const today=new Date(); 
+document.getElementById('edit-date').value = today.toISOString().substr(0, 10);
 
 function checkComplete(selectedItem, completeStatus) {
     if(selectedItem.isComplete) {
@@ -17,7 +19,7 @@ function editButton(selectedItem) {
 
     editTitle.value = selectedItem.title;
     editDesc.value = selectedItem.desc;
-    editDate.value = selectedItem.dueDate;
+    // editDate.value = selectedItem.dueDate;
     editPriority.value = selectedItem.priority;
 
     const submitEditBtn = document.querySelector(".submit-edit");
