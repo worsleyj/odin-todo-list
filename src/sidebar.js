@@ -64,8 +64,11 @@ function displayProject(projectObj, projectArray, index) {
     project.setAttribute("data-index", index);
     projectList.append(project);
 
+    const projectTitleBar = document.createElement("div");
     const projectTitle = document.createElement("h1");
     const deleteProjectBtn = document.createElement("button");
+    projectTitleBar.className = "title-container";
+    projectTitleBar.append(projectTitle, deleteProjectBtn);
     deleteProjectBtn.textContent = "X";
     deleteProjectBtn.className = "delete-btn";
     deleteProjectBtn.addEventListener("click", () => {
@@ -73,7 +76,7 @@ function displayProject(projectObj, projectArray, index) {
         resetDisplay();
     })
     projectTitle.textContent = projectObj.title;
-    project.append(projectTitle, deleteProjectBtn);
+    project.append(projectTitleBar);
 
     displayNotes(project, projectArray);
 }
@@ -94,7 +97,7 @@ function displayNotes(project, projectArray) {
         const isComplete = document.createElement("div");
         const deleteNoteBtn = document.createElement("button");
         itemTitleBar.append(itemTitle, itemPriority, deleteNoteBtn)
-        itemTitleBar.className = "note-title-container";
+        itemTitleBar.className = "title-container";
         itemTitle.textContent = noteItem.title;
         itemPriority.className = "note-priority";
         checkPriority(noteItem, itemPriority);
