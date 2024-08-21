@@ -82,8 +82,6 @@ function displaySelectedItem(selectedItem) {
         }
         checkComplete(selectedItem, completeStatus);
     })
-
-
     selection.append(itemContainer);
     itemContainer.append(titleBar, itemDesc, footer);
 }
