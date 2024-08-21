@@ -26,7 +26,7 @@ defaultProject.items.push(testItem);
 defaultProject.items.push(testItemTwo);
 defaultProject.items.push(testItemThree);
 
-const defaultProject2 = createProject("Default Project2");
+const defaultProject2 = createProject("Default Project 2");
 projects.push(defaultProject2);
 defaultProject2.items.push(testItem);
 defaultProject2.items.push(testItemTwo);
