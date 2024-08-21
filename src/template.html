@@ -1,71 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="project-list"></div>
     <div class="selected-item"></div>
     <dialog class="new-project modal">
-        <form id="new-project-form" method="dialog">
-            <h1>Create New Project</h1>
-            <label for="title">Title</label>
-            <input id="new-project-title" type="text" value="New Project">
-            <div class="button-container">
-                <button class="close-modal">Close</button>
-                <button class="submit-new-project">Add</button>
-            </div>
-        </form>
+      <form id="new-project-form" method="dialog">
+        <h1>Create New Project</h1>
+        <label for="title">Title</label>
+        <input id="new-project-title" type="text" value="New Project" />
+        <div class="button-container">
+          <button class="close-modal">Close</button>
+          <button class="submit-new-project">Add</button>
+        </div>
+      </form>
     </dialog>
     <dialog class="new-note modal">
-        <form id="new-note-form" method="dialog">
-            <h1>Create New Note</h1>
-            <label for="title">Title</label>
-            <input id="new-note-title" type="text" value="New Note">
-            
-            <label for="desc">Description</label>
-            <input id="new-desc" type="text" value="Description">
-            
-            <label for="date">Due Date</label>
-            <input id="new-date" type="date">
+      <form id="new-note-form" method="dialog">
+        <h1>Create New Note</h1>
+        <label for="title">Title</label>
+        <input id="new-note-title" type="text" value="New Note" />
 
-            <label for="priority">Priority</label>
-            <input id="new-priority" type="number" value="0" min="0" max="3">
+        <label for="desc">Description</label>
+        <input id="new-desc" type="text" value="Description" />
 
-            <label for="projects">Project Number</label>
-            <input id="project-index" type="number" value="1" min="1" max="1">
+        <label for="date">Due Date</label>
+        <input id="new-date" type="date" />
 
-            <div class="button-container">
-                <button class="close-modal">Close</button>
-                <button class="submit-new-note">Add</button>
-            </div>
-        </form>
+        <label for="priority">Priority</label>
+        <input id="new-priority" type="number" value="0" min="0" max="3" />
+
+        <label for="projects">Project Number</label>
+        <input id="project-index" type="number" value="1" min="1" max="1" />
+
+        <div class="button-container">
+          <button class="close-modal">Close</button>
+          <button class="submit-new-note">Add</button>
+        </div>
+      </form>
     </dialog>
     <dialog class="edit-note modal">
-        <form id="new-note-form" method="dialog">
-            <h1>Edit Note</h1>
-            <label for="title">Title</label>
-            <input id="edit-title" type="text" value="New Note">
-            
-            <label for="desc">Description</label>
-            <input id="edit-desc" type="text" value="Description">
-            
-            <label for="date">Due Date</label>
-            <input id="edit-date" type="date">
+      <form id="new-note-form" method="dialog">
+        <h1>Edit Note</h1>
+        <label for="title">Title</label>
+        <input id="edit-title" type="text" value="New Note" />
 
-            <label for="priority">Priority</label>
-            <input id="edit-priority" type="number" value="0" min="0" max="3">
+        <label for="desc">Description</label>
+        <input id="edit-desc" type="text" value="Description" />
 
-            <label for="projects">Project Number</label>
-            <input id="project-index" type="number" value="1" min="1" max="1">
+        <label for="date">Due Date</label>
+        <input id="edit-date" type="date" />
 
-            <div class="button-container">
-                <button class="close-modal">Close</button>
-                <button class="submit-edit">Save</button>
-            </div>
-        </form>
+        <label for="priority">Priority</label>
+        <input id="edit-priority" type="number" value="0" min="0" max="3" />
+
+        <label for="projects">Project Number</label>
+        <input id="project-index" type="number" value="1" min="1" max="1" />
+
+        <div class="button-container">
+          <button class="close-modal">Close</button>
+          <button class="submit-edit">Save</button>
+        </div>
+      </form>
     </dialog>
-</body>
+  </body>
 </html>

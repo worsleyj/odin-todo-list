@@ -1,135 +1,136 @@
 :root {
-    --darker: #1f6f78;
-    --dark: #118a7e;
-    --light: #3baea0;
-    --lighter: #93e4c1;
+  --darker: #1f6f78;
+  --dark: #118a7e;
+  --light: #3baea0;
+  --lighter: #93e4c1;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 li:hover {
-    border-radius: 12px;
-    background-color: var(--lighter);
-    opacity: .8;
+  border-radius: 12px;
+  background-color: var(--lighter);
+  opacity: 0.8;
 }
 
 body {
-    display: grid;
-    grid-template: 1fr / 1fr 3fr;
-    height: 100vh;
+  display: grid;
+  grid-template: 1fr / 1fr 3fr;
+  height: 100vh;
 }
 
 button {
-    border-radius: 8px;
-    background-color: var(--lighter);
+  border-radius: 8px;
+  background-color: var(--lighter);
 }
 .project-list {
-    display: flex;
-    flex-direction: column;
-    grid-area: 1 / 1 / 3 / 2;
-    width: 100%;
-    background-color: var(--darker);
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 1 / 3 / 2;
+  width: 100%;
+  background-color: var(--darker);
 }
 
-.new-project-button, .new-note-button {
-    padding: 12px;
-    margin: 8px 24px;
+.new-project-button,
+.new-note-button {
+  padding: 12px;
+  margin: 8px 24px;
 }
-
 
 .selected-item {
-    grid-area: 1 / 2 / 3 / 3;
-    padding: 24px;
-    background-color: var(--dark);
-    color: white;
+  grid-area: 1 / 2 / 3 / 3;
+  padding: 24px;
+  background-color: var(--dark);
+  color: white;
 }
 
 .modal {
-    margin: auto;
+  margin: auto;
 }
 
 .modal::backdrop {
-    background-color: black;
-    opacity: .4;
+  background-color: black;
+  opacity: 0.4;
 }
 
 dialog {
-    background-color: var(--dark);
+  background-color: var(--dark);
 }
 
 form {
-    font-size: 32px;
-    background-color: var(--lighter);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px 50px;
+  font-size: 32px;
+  background-color: var(--lighter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 50px;
 }
 
 .button-container {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .button-container > button {
-    background-color: var(--light);
-    margin-top: 12px;
-    width: 125px;
+  background-color: var(--light);
+  margin-top: 12px;
+  width: 125px;
 }
 
 label {
-    padding-top: 12px;
+  padding-top: 12px;
 }
 
-.title-bar, .footer {
-    border-radius: 12px;
-    background-color: var(--darker);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.title-bar,
+.footer {
+  border-radius: 12px;
+  background-color: var(--darker);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer {
-    gap: 16px;
+  gap: 16px;
 }
 
 .footer > * {
-    font-size: 38px;
+  font-size: 38px;
 }
 
 .footer > button {
-    font-size: 28px;
+  font-size: 28px;
 }
 .priority-level {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 .main-text {
-    border-radius: 12px;
-    background-color: white;
-    color: var(--darker);
-    padding: 24px;
-    margin: 5px;
-    font-size: 32px;
+  border-radius: 12px;
+  background-color: white;
+  color: var(--darker);
+  padding: 24px;
+  margin: 5px;
+  font-size: 32px;
 }
 
 .delete-btn {
-    background-color: orange;
-    opacity: .3;
+  background-color: orange;
+  opacity: 0.3;
 }
 .delete-btn.note {
-    background-color: rgb(252, 221, 165);
+  background-color: rgb(252, 221, 165);
 }
 .delete-btn:hover {
-    opacity: 1;
-    background-color: red;
+  opacity: 1;
+  background-color: red;
 }
 
 .title-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

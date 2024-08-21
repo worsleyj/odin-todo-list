@@ -1,94 +1,93 @@
 import { resetDisplay } from "./sidebar";
 
-const today=new Date(); 
-document.getElementById('edit-date').value = today.toISOString().substr(0, 10);
+const today = new Date();
+document.getElementById("edit-date").value = today.toISOString().substr(0, 10);
 
 function checkComplete(selectedItem, completeStatus) {
-    if(selectedItem.isComplete) {
-        completeStatus.textContent = "✅";
-    } else completeStatus.textContent = "❌";
+  if (selectedItem.isComplete) {
+    completeStatus.textContent = "✅";
+  } else completeStatus.textContent = "❌";
 }
 
 function editButton(selectedItem) {
-    const editModal = document.querySelector(".edit-note");
-    const editTitle = document.querySelector("#edit-title");
-    const editDesc = document.querySelector("#edit-desc");
-    const editDate = document.querySelector("#edit-date");
-    const editPriority = document.querySelector("#edit-priority");
+  const editModal = document.querySelector(".edit-note");
+  const editTitle = document.querySelector("#edit-title");
+  const editDesc = document.querySelector("#edit-desc");
+  const editDate = document.querySelector("#edit-date");
+  const editPriority = document.querySelector("#edit-priority");
 
-    editTitle.value = selectedItem.title;
-    editDesc.value = selectedItem.desc;
-    // editDate.value = selectedItem.dueDate;
-    editPriority.value = selectedItem.priority;
+  editTitle.value = selectedItem.title;
+  editDesc.value = selectedItem.desc;
+  // editDate.value = selectedItem.dueDate;
+  editPriority.value = selectedItem.priority;
 
-    const submitEditBtn = document.querySelector(".submit-edit");
-    submitEditBtn.addEventListener("click", () => {
-        selectedItem.title = editTitle.value;
-        selectedItem.desc = editDesc.value;
-        selectedItem.dueDate = editDate.value;
-        selectedItem.priority = editPriority.value;
-        resetDisplay();
-        displaySelectedItem(selectedItem);
-    })
-    editModal.showModal();
+  const submitEditBtn = document.querySelector(".submit-edit");
+  submitEditBtn.addEventListener("click", () => {
+    selectedItem.title = editTitle.value;
+    selectedItem.desc = editDesc.value;
+    selectedItem.dueDate = editDate.value;
+    selectedItem.priority = editPriority.value;
+    resetDisplay();
+    displaySelectedItem(selectedItem);
+  });
+  editModal.showModal();
 }
 
 function checkPriority(selectedItem, itemPriority) {
-    if (selectedItem.priority == 1 ) {
-        itemPriority.textContent = "🟢";
-    } else if (selectedItem.priority == 2) {
-        itemPriority.textContent = "🟡";
-    } else if (selectedItem.priority == 3) {
-        itemPriority.textContent = "🔴";
-    } else {
-        itemPriority.textContent = "";
-    }
+  if (selectedItem.priority == 1) {
+    itemPriority.textContent = "🟢";
+  } else if (selectedItem.priority == 2) {
+    itemPriority.textContent = "🟡";
+  } else if (selectedItem.priority == 3) {
+    itemPriority.textContent = "🔴";
+  } else {
+    itemPriority.textContent = "";
+  }
 }
 
 function displaySelectedItem(selectedItem) {
-    const selection = document.querySelector(".selected-item");
-    selection.textContent = "";
-    const itemContainer = document.createElement("div");
-    const titleBar = document.createElement("div");
-    const itemTitle = document.createElement("h1");
-    const itemPriority = document.createElement("div");
-    const editBtn = document.createElement("button");
-    editBtn.className = "edit-button";
-    titleBar.append(itemTitle, itemPriority, editBtn);
-    titleBar.className = "title-bar";
+  const selection = document.querySelector(".selected-item");
+  selection.textContent = "";
+  const itemContainer = document.createElement("div");
+  const titleBar = document.createElement("div");
+  const itemTitle = document.createElement("h1");
+  const itemPriority = document.createElement("div");
+  const editBtn = document.createElement("button");
+  editBtn.className = "edit-button";
+  titleBar.append(itemTitle, itemPriority, editBtn);
+  titleBar.className = "title-bar";
 
-    const itemDesc = document.createElement("p");
+  const itemDesc = document.createElement("p");
 
-    const itemDueDate = document.createElement("div");
-    const completeStatus = document.createElement("div");
-    const toggleComplete = document.createElement("button");
-    const footer = document.createElement("div");
-    footer.append(itemDueDate, completeStatus, toggleComplete)
-    footer.className = "footer";
+  const itemDueDate = document.createElement("div");
+  const completeStatus = document.createElement("div");
+  const toggleComplete = document.createElement("button");
+  const footer = document.createElement("div");
+  footer.append(itemDueDate, completeStatus, toggleComplete);
+  footer.className = "footer";
 
-    checkPriority(selectedItem, itemPriority);
-    itemTitle.textContent = selectedItem.title;
-    itemDesc.textContent = selectedItem.desc;
-    itemDesc.className = "main-text";
-    itemDueDate.textContent = selectedItem.dueDate;
-    itemPriority.className = "priority-level";
+  checkPriority(selectedItem, itemPriority);
+  itemTitle.textContent = selectedItem.title;
+  itemDesc.textContent = selectedItem.desc;
+  itemDesc.className = "main-text";
+  itemDueDate.textContent = selectedItem.dueDate;
+  itemPriority.className = "priority-level";
 
+  editBtn.textContent = "Edit";
+  editBtn.addEventListener("click", () => editButton(selectedItem));
 
-    editBtn.textContent = "Edit";
-    editBtn.addEventListener("click", () => editButton(selectedItem));
-
+  checkComplete(selectedItem, completeStatus);
+  toggleComplete.textContent = "Mark as Completed";
+  toggleComplete.addEventListener("click", () => {
+    if (selectedItem.isComplete) {
+      selectedItem.isComplete = false;
+    } else {
+      selectedItem.isComplete = true;
+    }
     checkComplete(selectedItem, completeStatus);
-    toggleComplete.textContent = "Mark as Completed";
-    toggleComplete.addEventListener("click", () => {
-        if (selectedItem.isComplete) {
-            selectedItem.isComplete = false;
-        } else {
-            selectedItem.isComplete = true;
-        }
-        checkComplete(selectedItem, completeStatus);
-    })
-    selection.append(itemContainer);
-    itemContainer.append(titleBar, itemDesc, footer);
+  });
+  selection.append(itemContainer);
+  itemContainer.append(titleBar, itemDesc, footer);
 }
 
 export { displaySelectedItem, checkPriority };
