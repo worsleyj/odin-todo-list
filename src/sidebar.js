@@ -1,5 +1,5 @@
 import { createNoteItem, createProject, projects } from ".";
-import { displaySelectedItem } from "./mainDisplay";
+import { displaySelectedItem, checkPriority } from "./mainDisplay";
 
 const projectList = document.querySelector(".project-list");
 const projectModal = document.querySelector(".new-project");
@@ -66,7 +66,8 @@ function displayProject(projectObj, projectArray, index) {
 
     const projectTitle = document.createElement("h1");
     const deleteProjectBtn = document.createElement("button");
-    deleteProjectBtn.textContent = "Delete Project";
+    deleteProjectBtn.textContent = "X";
+    deleteProjectBtn.className = "delete-btn";
     deleteProjectBtn.addEventListener("click", () => {
         projects.splice(index, 1);
         resetDisplay();
@@ -86,14 +87,20 @@ function displayNotes(project, projectArray) {
         itemLine.className = "note-item";
         itemLine.setAttribute("data-index", index);
         index++;
+        const itemTitleBar = document.createElement("div");
         const itemTitle = document.createElement("h2");
+        const itemPriority = document.createElement("div");
         const itemDueDate = document.createElement("div");
         const isComplete = document.createElement("div");
         const deleteNoteBtn = document.createElement("button");
+        itemTitleBar.append(itemTitle, itemPriority, deleteNoteBtn)
+        itemTitleBar.className = "note-title-container";
         itemTitle.textContent = noteItem.title;
+        itemPriority.className = "note-priority";
+        checkPriority(noteItem, itemPriority);
         itemDueDate.textContent = noteItem.dueDate;
         deleteNoteBtn.textContent = "X";
-        deleteNoteBtn.className = "delete-btn";
+        deleteNoteBtn.className = "delete-btn note";
         deleteNoteBtn.addEventListener("click", () => {
             const deleteIndex = deleteNoteBtn.parentElement.getAttribute("data-index");
             projectArray.splice(deleteIndex, 1);
@@ -104,7 +111,7 @@ function displayNotes(project, projectArray) {
         }
 
 
-        itemLine.append(itemTitle, itemDueDate, isComplete, deleteNoteBtn);
+        itemLine.append(itemTitleBar, itemDueDate, isComplete);
         project.append(itemLine);
     });
 }

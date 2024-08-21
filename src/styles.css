@@ -115,3 +115,21 @@ label {
     margin: 5px;
     font-size: 32px;
 }
+
+.delete-btn {
+    background-color: orange;
+    opacity: .3;
+}
+.delete-btn.note {
+    background-color: rgb(252, 221, 165);
+}
+.delete-btn:hover {
+    opacity: 1;
+    background-color: red;
+}
+
+.note-title-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

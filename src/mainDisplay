@@ -33,6 +33,18 @@ function editButton(selectedItem) {
     editModal.showModal();
 }
 
+function checkPriority(selectedItem, itemPriority) {
+    if (selectedItem.priority == 1 ) {
+        itemPriority.textContent = "🟢";
+    } else if (selectedItem.priority == 2) {
+        itemPriority.textContent = "🟡";
+    } else if (selectedItem.priority == 3) {
+        itemPriority.textContent = "🔴";
+    } else {
+        itemPriority.textContent = "";
+    }
+}
+
 function displaySelectedItem(selectedItem) {
     const selection = document.querySelector(".selected-item");
     selection.textContent = "";
@@ -54,21 +66,14 @@ function displaySelectedItem(selectedItem) {
     footer.append(itemDueDate, completeStatus, toggleComplete)
     footer.className = "footer";
 
+    checkPriority(selectedItem, itemPriority);
     itemTitle.textContent = selectedItem.title;
     itemDesc.textContent = selectedItem.desc;
     itemDesc.className = "main-text";
     itemDueDate.textContent = selectedItem.dueDate;
     itemPriority.className = "priority-level";
 
-    if (selectedItem.priority == 1 ) {
-        itemPriority.textContent = "🟢";
-    } else if (selectedItem.priority == 2) {
-        itemPriority.textContent = "🟡";
-    } else if (selectedItem.priority == 3) {
-        itemPriority.textContent = "🔴";
-    } else {
-        itemPriority.textContent = "";
-    }
+
     editBtn.textContent = "Edit";
     editBtn.addEventListener("click", () => editButton(selectedItem));
 
@@ -86,4 +91,4 @@ function displaySelectedItem(selectedItem) {
     itemContainer.append(titleBar, itemDesc, footer);
 }
 
-export { displaySelectedItem };
+export { displaySelectedItem, checkPriority };
